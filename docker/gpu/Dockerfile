@@ -42,6 +42,11 @@ RUN git config --global user.name "pdh"
 RUN git config --global user.email "pdh930105@gmail.com"
 
 WORKDIR /home/${USER_NAME}
-
+RUN wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.1.tar.gz
+RUN tar -xvzf openmpi-4.0.1.tar.gz
+RUN sudo mv openmpi-4.0.1 /
+RUN cd /openmpi-4.0.1 && ./configure --prefix=/openmpi-4.0.1
+RUN cd /openmpi-4.0.1 && make && make install
+ 
 ENTRYPOINT ["/opt/nvidia/nvidia_entrypoint.sh"]
 
